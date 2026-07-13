@@ -1,62 +1,63 @@
-﻿import Button from "antd/es/button";
-import { ArrowRight } from "lucide-react";
+﻿import { ArrowRight } from "lucide-react";
+import { Button, Form, Input } from "antd";
 
-export default function VisitorTrackerWelcome() {
+export default function VerifyIdentity() {
+  const handleFinish = () => {
+    //api call
+  };
+
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-slate-100 p-4">
-      {/* Phone frame */}
-      <div className=" flex flex-col">
-        {/* Status bar */}
-
-        {/* Main content */}
-        <div className="flex-1 flex flex-col items-center px-7 pt-6">
-          {/* Logo */}
-          <div className="flex items-center justify-center">
-            <img
-              src="https://i.imgur.com/uedBC6w.png"
-              alt="VMS logo"
-              className="h-5 w-auto"
-            />
-          </div>
-
-          {/* Headline */}
-          <div className="text-center mt-[50px]">
-            <p className="text-slate-800 text-[15px]">Welcome to</p>
-            <h1 className="!text-sky-700 text-[26px] font-bold mt-0.5">
-              Visitor Tracker
-            </h1>
-            <p className="text-slate-500 text-[13px] leading-snug mt-2 px-2">
-              Secure visitor check-in and approval made <br />
-              simple
-            </p>
-          </div>
-
-          {/* Image card */}
-          <div className="relative w-[350px] mt-7 rounded-2xl bg-sky-50 p-2.5">
-            <div className="relative rounded-xl overflow-hidden">
-              <img
-                src="https://i.imgur.com/Uf8LrZJ.png"
-                alt="Gated residential estate"
-                className="w-full h-[190px] object-cover"
-              />
-            </div>
+    <div className="flex min-h-screen w-full flex-col bg-white">
+      <Form
+        layout="vertical"
+        requiredMark={false}
+        onFinish={handleFinish}
+        className="mx-auto flex w-full max-w-md flex-1 flex-col px-7 pb-8 pt-14"
+      >
+        <div className="flex justify-center">
+           <div className="flex justify-center">
+            <img src="/padlock.svg" alt="" />
           </div>
         </div>
 
-        {/* Get Started button */}
-        <div className="px-6 pb-8 pt-[118px]">
-          <Button
-            type="primary"
+        <div className="mt-5 text-center">
+          <h1 className="text-xl font-bold text-slate-900">Verify Identity</h1>
+          <p className="mt-2 px-2 text-xs leading-snug text-slate-500">
+            Enter your email address or phone number to
+            <br /> continue with registration.
+          </p>
+        </div>
+
+        <Form.Item
+          name="email"
+          label="Email"
+          className="mx-auto mt-8 w-full max-w-xs"
+          rules={[
+            { required: true, message: "Please enter your email" },
+            { type: "email", message: "Please enter a valid email address" },
+          ]}
+        >
+          <Input
+            type="email"
             size="large"
-            block
-            className="rounded-xl text-[15px] font-semibold"
-            icon={<ArrowRight size={18} />}
-            iconPosition="end"
-          >
-            Get Started
-          </Button>
-        </div>
-      </div>
+            placeholder="e.g. example@gmail.com"
+            className="rounded-xl"
+          />
+        </Form.Item>
+
+        <div className="flex-1" />
+
+        <Button
+          type="primary"
+          htmlType="submit"
+          size="large"
+          className="mx-auto w-full max-w-xs rounded-xl text-[15px] font-semibold"
+          icon={<ArrowRight size={18} />}
+          iconPlacement="end"
+        >
+          Get Started
+        </Button>
+      </Form>
     </div>
   );
 }
